@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### `Modify or Create .env file`
+
+Create .env or modify .env file in the root directory to include:
+
+> ### Database Configuration
+> DATABASE_URL=postgres://postgres:123@localhost:5432/ecommerce
+
+> ### Server Configuration
+> SERVER_PORT=8000
+
+
+Then in the project directory, you need to run:
+
+### `npm install`
+
+To install necessary package and do the table migration.
 
 ## Available Scripts
 
@@ -10,6 +27,3 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
