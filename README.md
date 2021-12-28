@@ -27,3 +27,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Note
+
+This project does not have loading at the moment. When click button "Fetch From Elevania", need to wait for a minutes.
