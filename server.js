@@ -16,12 +16,12 @@ const startServer = async function () {
     try {
         const server = await Glue.compose(manifest, composeOptions);
         await server.start();
-        // server.views({
-        //     engines: {
-        //         hbs: Handlebars
-        //     },
-        //     path: './app/templates'
-        // });
+        server.views({
+            engines: {
+                hbs: Handlebars
+            },
+            path: './client/build'
+        });
         console.info(`Server started at ${ server.info.uri }`);
     }
     catch (err) {

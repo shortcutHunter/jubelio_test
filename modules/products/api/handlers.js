@@ -59,6 +59,7 @@ module.exports = (server) => {
         }
       });
     },
+
     /**
      * DELETE /product/{productId}
      * @param {*} request
@@ -76,6 +77,5 @@ module.exports = (server) => {
         };        
       });
     }
-
   }
 }

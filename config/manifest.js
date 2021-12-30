@@ -17,6 +17,9 @@ const manifest = {
             },
             {
                 plugin: './modules/elevania'
+            },
+            {
+                plugin: './modules/static'
             }
         ]
     }
