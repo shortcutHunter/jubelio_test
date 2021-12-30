@@ -4,7 +4,7 @@ module.exports = (server) => {
     
   return {
     /**
-     * GET /api/product
+     * GET /product
      * @param {*} request
      * @param {*} reply
      */
@@ -23,7 +23,7 @@ module.exports = (server) => {
     },
 
     /**
-     * POST /api/product/{productId}
+     * POST /product/{productId}
      * @param {*} request
      * @param {*} reply
      */
@@ -43,7 +43,7 @@ module.exports = (server) => {
     },
 
     /**
-     * POST /api/product
+     * POST /product
      * @param {*} request
      * @param {*} reply
      */
@@ -60,7 +60,7 @@ module.exports = (server) => {
       });
     },
     /**
-     * DELETE /api/product/{productId}
+     * DELETE /product/{productId}
      * @param {*} request
      * @param {*} reply
      */

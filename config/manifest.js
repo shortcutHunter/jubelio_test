@@ -13,15 +13,10 @@ const manifest = {
             { plugin: 'vision' },
             { plugin: 'hapi-postgres-connection' },
             {
-                plugin: './modules/api',
-                options: {
-                    routes: {
-                        prefix: '/api'
-                    }
-                }
+                plugin: './modules/products'
             },
             {
-                plugin: './modules/services'
+                plugin: './modules/elevania'
             }
         ]
     }

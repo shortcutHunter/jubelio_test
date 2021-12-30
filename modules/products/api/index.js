@@ -1,8 +1,10 @@
 'use strict';
 
+const Routes = require('./routes');
+
 const register = async (server, options) => {
   
-    server.register(require('./products'));
+    server.route(Routes(server));
 };
   
 const api = {

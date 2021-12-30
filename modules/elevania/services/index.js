@@ -2,15 +2,15 @@
 
 const register = async (server, options) => {
     let services = [].concat(
-      require('./products')
+      require('./elevania')
     );
     server.method(services);
   }
   
-const services = {
+const elevania_services = {
   pkg: require('./package.json'),
   register: register,
-  name: 'services'
+  name: 'elevania_services'
 }
 
-  exports.plugin = services
+  exports.plugin = elevania_services
