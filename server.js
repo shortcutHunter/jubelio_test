@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const Glue = require('@hapi/glue');
-const Manifest = require('./config/manifest');
+const manifest = require('./config/manifest');
 const Handlebars = require('handlebars');
 
 const composeOptions = {
@@ -14,14 +14,14 @@ const composeOptions = {
 
 const startServer = async function () {
     try {
-        const server = await Glue.compose(Manifest.data, composeOptions);
+        const server = await Glue.compose(manifest, composeOptions);
         await server.start();
-        server.views({
-            engines: {
-                hbs: Handlebars
-            },
-            path: './app/templates'
-        });
+        // server.views({
+        //     engines: {
+        //         hbs: Handlebars
+        //     },
+        //     path: './app/templates'
+        // });
         console.info(`Server started at ${ server.info.uri }`);
     }
     catch (err) {
