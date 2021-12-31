@@ -4,12 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run build\"",
     "server": "node server.js",
     "client": "cd ./client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "migrate": "node migrate.js",
-    "postinstall": "npm run migrate && cd ./client && npm install"
+    "postinstall": "npm run migrate && cd ./client && npm install",
+    "build": "cd ./client && npm run build"
   },
   "keywords": [],
   "author": "",
