@@ -25,7 +25,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the production mode.\ (build react file)
+Runs the app in the production mode. (build react file)\
 Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
 ### `npm run dev`
