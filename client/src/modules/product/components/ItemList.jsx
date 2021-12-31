@@ -1,5 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 function ItemList ({product}) {
 
@@ -27,30 +29,41 @@ function ItemList ({product}) {
             }
             {product.data.map((p) => {
                 return (
-                    <div className='card'>
-                        <div className="card-image">
-                            <img src={p.image} alt="" />
-                        </div>
-                        <div className='card-title'>
-                            {p.name}
-                        </div>
-                        <div className='card-body'>
-                            <div className='card-info'>SKU: {p.sku}</div>
-                            <div className='card-info'>Price: {p.price}</div>
-                            <div className='card-info'>
-                                Description:
+                    <Card style={{ width: '18rem', marginRight: '20px', marginBottom: "20px" }}>
+                        <Card.Img variant="top" src={p.image} />
+                        <Card.Body>
+                            <Card.Title>{p.name}</Card.Title>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>SKU</td>
+                                        <td>:</td>
+                                        <td>{p.sku}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>:</td>
+                                        <td>{p.price}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>:</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className='card-desc'>
                                 <div dangerouslySetInnerHTML={{__html: p.description}}></div>
                             </div>
-                        </div>
-                        <div className="card-footer">
-                            <button onClick={() => handleEditProduct(p)} className="edit-button">
+                        </Card.Body>
+                        <Card.Footer>
+                            <Button onClick={() => handleEditProduct(p)} style={{ marginRight: '10px' }}>
                                 Edit
-                            </button>
-                            <button onClick={() => handleDeleteProduct(p)}>
+                            </Button>
+                            <Button variant="danger" onClick={() => handleDeleteProduct(p)}>
                                 Delete
-                            </button>
-                        </div>
-                    </div>
+                            </Button>
+                        </Card.Footer>
+                    </Card>
                 );
             })}
         </div>

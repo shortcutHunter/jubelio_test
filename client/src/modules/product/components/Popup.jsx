@@ -1,8 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 function Popup ({product}) {
-    
+
     const getData = (field_name) => {
 
         if (product.active_product) {
@@ -11,12 +13,13 @@ function Popup ({product}) {
             return null;
         }
     };
-
+    
     let name = null;
     let sku = null;
     let image = null;
     let price = null;
     let description = null;
+
     let defaultValue = {
         id: getData('id'),
         name: getData('name'),
@@ -34,8 +37,6 @@ function Popup ({product}) {
           reader.readAsDataURL(file);
           reader.onload = () => {
             baseURL = reader.result;
-            // let file_detail = file;
-            // file_detail['base64'] = baseURL;
             resolve(baseURL);
           };          
         });
@@ -45,7 +46,6 @@ function Popup ({product}) {
         product.closePopup();
     }
     const handleSubmit = async (e) => {
-        e.preventDefault();
         let product_value = {
             name: name.value,
             sku: sku.value,
@@ -59,12 +59,12 @@ function Popup ({product}) {
             });
         }
         
-        if (defaultValue.id) {
+        if (product.active_product.id) {
             if (!product_value.image) {
-                product_value.image = defaultValue.image;
+                product_value.image = product.active_product.image;
             }
 
-            product.updateProduct(product_value, defaultValue.id).then( (result) => {
+            product.updateProduct(product_value, product.active_product.id).then( (result) => {
                 if (result) {
                     closePopupHandler();
                 }
@@ -75,56 +75,46 @@ function Popup ({product}) {
                     closePopupHandler();
                 }
             });
-        }
-
-        
+        }       
     } 
 
     return (
-        <div className="popup">
-             <div className="popup-content">
-                 <span className="close" onClick={closePopupHandler}>&times;</span>
-                 <br />
-                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="from-group">
-                        <label>Name</label>
-                        <input type="text" id={'name'} defaultValue={defaultValue.name} className="form-control" ref={node => {
-                            name = node;
-                        }} />
-                    </div>
+            <Modal show={product.popup} onHide={product.closePopup}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{product.active_product.id ? "Edit" : "Add"} Product</Modal.Title>
+                </Modal.Header>
 
-                    <div className="from-group">
-                        <label>SKU</label>
-                        <input type="text" id={'sku'} defaultValue={defaultValue.sku} className="form-control" ref={node => {
-                            sku = node;
-                        }} />
-                    </div>
-                    
-                    <div className="from-group">
-                        <label>Images</label>
-                        <input type="file" id={'image'} className="form-control" ref={node => {
-                            image = node;
-                        }} />
-                    </div>
-                    
-                    <div className="from-group">
-                        <label>Price</label>
-                        <input type="text" id={'price'} defaultValue={defaultValue.price} className="form-control" ref={node => {
-                            price = node;
-                        }} />
-                    </div>
-                    
-                    <div className="from-group">
-                        <label>Description</label>
-                        <textarea type="file" id={'description'} defaultValue={defaultValue.description} className="form-control" ref={node => {
-                            description = node;
-                        }} />
-                    </div>
-                    
-                    <button type="submit" className="submit-button">Submit</button>
-                </form>
-             </div>
-       </div>
+                <Modal.Body>
+                        <div className="from-group">
+                            <label>Name</label>
+                            <input type="text" className="form-control" ref={node => {name = node}} defaultValue={defaultValue.name} />
+                        </div>
+
+                        <div className="from-group">
+                            <label>SKU</label>
+                            <input type="text" className="form-control" ref={node => {sku = node}} defaultValue={defaultValue.sku} />
+                        </div>
+                        
+                        <div className="from-group">
+                            <label>Images</label>
+                            <input type="file" className="form-control" ref={node => {image = node}} />
+                        </div>
+                        
+                        <div className="from-group">
+                            <label>Price</label>
+                            <input type="text" className="form-control" ref={node => {price = node}} defaultValue={defaultValue.price} />
+                        </div>
+                        
+                        <div className="from-group">
+                            <label>Description</label>
+                            <textarea type="file" className="form-control" ref={node => {description = node}} defaultValue={defaultValue.description} />
+                        </div>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button onClick={handleSubmit}>Submit</Button>
+                </Modal.Footer>
+            </Modal>
     );
 }
 

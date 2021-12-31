@@ -1,13 +1,17 @@
-import ProductObj from "./models/models";
+import ProductStore from "./ProductStore";
 import ItemList from "./components/ItemList";
-import AddItem from "./components/AddItem";
+import ButtonGroup from "./components/ButtonGroup";
+import Popup from "./components/Popup";
+import Loading from "./components/Loading";
 
 function Product() {
-  const productObj = new ProductObj();
+  const productStore = new ProductStore();
   return (
     <div>
-      <AddItem product={productObj} />
-      <ItemList product={productObj} />
+      <Loading product={productStore} />
+      <ButtonGroup product={productStore} />
+      <ItemList product={productStore} />
+      <Popup product={productStore} />
     </div>
   );
 }
